@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Tempo Limpo",
+    "slug": "tempo_limpo-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#000000"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.tempo_limpoapp"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "eba1c718-d72d-40fa-975b-326421f7eba9"
+      }
+    }
+  }
+}

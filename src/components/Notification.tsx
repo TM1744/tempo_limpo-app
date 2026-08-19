@@ -1,0 +1,42 @@
+import { StyleSheet, Text, View } from "react-native";
+import { INotificationProps } from "../interfaces/props/INotificationProps";
+import { EvilIcons } from "@expo/vector-icons";
+import {
+    widthPercentageToDP as wp,
+    heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
+export function Notification ({text} : INotificationProps) {
+
+    return (
+        <View style={style.container}>
+            <View>
+                <EvilIcons name="exclamation" size={40} color={"black"}/>
+            </View>
+            <Text style={style.text}>{text ?? "Mensagem de notificação não definida!"}</Text>
+        </View>
+    );
+}
+
+const style = StyleSheet.create({
+    container : {
+        display: "flex",
+        width: wp(92),
+        backgroundColor: "rgb(254, 254, 254)",
+        borderRadius: 10,
+        alignItems: "center",
+        gap: 20,
+        flexDirection: "row",
+        padding: 20,
+        paddingLeft: 25
+    },
+
+    text : {
+        display: "flex",
+        color: "black",
+        flex: 1,
+        fontFamily: "Lato-Regular",
+        fontSize: 15,
+        lineHeight: 22
+    }
+})
