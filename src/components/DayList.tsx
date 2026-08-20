@@ -1,29 +1,30 @@
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { IDayListProps } from "../interfaces/props/IDayListProps";
 import { Notification } from "./Notification";
 import { DayCard } from "./DayCard";
 
 export function DayList({ loading, error, days, onPress }: IDayListProps) {
-    if (loading || !days || days.length === 0)
-        return <ActivityIndicator size={40} color="white" />
+    const hasDays = days !== undefined && days.length > 0;
 
-    if (error && (!days || days.length === 0) && !loading)
+    if (error && !hasDays && !loading)
         return <Notification text={error} />
 
     if (!onPress)
-        return <Notification text="Falha de configuração. É necessário informar uma função."/>
+        return <Notification text="Falha de configuração. É necessário informar uma função." />
 
-    return (
-        <View style={style.listContainer}>
-            {days.map((day) => (
-                <DayCard
-                    day={day}
-                    key={day.id.toString()}
-                    onPress={() => onPress(day)} />
-            ))}
-        </View>
-    );
+    if (hasDays)
+        return (
+            <View style={style.listContainer}>
+                {days.map((day) => (
+                    <DayCard
+                        day={day}
+                        key={day.id.toString()}
+                        onPress={() => onPress(day)} />
+                ))}
+            </View>
+        );
 
+    return null;
 }
 
 const style = StyleSheet.create({

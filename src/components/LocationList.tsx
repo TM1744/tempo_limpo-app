@@ -23,6 +23,8 @@ export function LocationList({ error, loading, locations, onPress }: ILocationLi
                 ))}
             </View>
         );
+
+    return null;
 }
 
 const style = StyleSheet.create({
