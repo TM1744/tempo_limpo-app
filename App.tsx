@@ -1,31 +1,31 @@
 import Routes from "./src/Routes";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { useCallback } from "react";
-
+import { useEffect } from "react";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     'JosefinSans': require('./assets/fonts/JosefinSans-Bold.ttf'),
     'JosefinSans-Italic': require('./assets/fonts/JosefinSans-BoldItalic.ttf'),
     'Lato-Light': require('./assets/fonts/Lato-Light.ttf'),
     'Lato-Regular': require('./assets/fonts/Lato-Regular.ttf')
   });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
+  useEffect(() => {
+    async function hideSplash() {
+      if (fontsLoaded || fontError) {
+        await SplashScreen.hideAsync();
+      }
     }
-  }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    return null; // Retorna nulo enquanto carrega para evitar erros de renderização
+    hideSplash();
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
   }
 
-
-  return (
-    <Routes/>
-  );
+  return <Routes />;
 }
