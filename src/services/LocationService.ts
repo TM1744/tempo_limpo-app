@@ -7,6 +7,8 @@ export class LocationService {
     private constructor() { }
 
     static async searchLocations(query: string): Promise<Location[] | undefined> {
+        console.info("LocationService.searchLocations called");
+
         const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
         await delay(3000)
@@ -32,6 +34,8 @@ export class LocationService {
     }
 
     static async saveLocation(location: Location): Promise<void> {
+        console.info("LocationService.saveLocation called");
+
         try {
             const jsonValue = JSON.stringify(location);
             await AsyncStorage.setItem('selected-location', jsonValue);
@@ -41,13 +45,13 @@ export class LocationService {
     }
 
     static async getSavedLocation(): Promise<Location | undefined> {
+        console.info("LocationService.getSavedLocation called");
+
         try {
             const json = await AsyncStorage.getItem('selected-location');
 
-            if (!json) {
-                return undefined;
-            }
-
+            if (!json) return undefined;
+            
             return this.interfaceToClass(JSON.parse(json) as IParsedLocation);
 
         } catch (error) {
@@ -57,6 +61,8 @@ export class LocationService {
     }
 
     static async removeSavedLocation(): Promise<void> {
+        console.info("LocationService.removeSavedLocation called");
+
         try {
             await AsyncStorage.removeItem('selected-location');
         } catch (error) {

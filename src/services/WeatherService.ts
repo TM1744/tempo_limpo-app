@@ -12,11 +12,11 @@ export class WeatherService {
     private constructor() { }
 
     static async getWeather(latitude: number, longitude: number): Promise<Weather | undefined> {
+        console.info("WeatherService.getWeather called");
+
         const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
         await delay(3000);
-
-        console.log("serviço de tempo chamado");
 
         const result = await OpenMeteoApi.fetchWeather(latitude, longitude);
 
@@ -55,6 +55,8 @@ export class WeatherService {
     }
 
     static async saveWeather(weather: Weather): Promise<void> {
+        console.info("WeatherService.saveWeather called");
+
         try {
             const jsonValue = JSON.stringify(weather);
             await AsyncStorage.setItem('current-weather', jsonValue);
@@ -64,6 +66,8 @@ export class WeatherService {
     }
 
     static async removeSavedWeather(): Promise<void> {
+        console.info("WeatherService.removeSavedWeather called");
+
         try {
             await AsyncStorage.removeItem('current-weather');
         } catch (error) {
@@ -72,21 +76,20 @@ export class WeatherService {
     }
 
     static async getSavedWeather(): Promise<Weather | undefined> {
+        console.info("WeatherService.getSavedWeather called");
+
         try {
             const json = await AsyncStorage.getItem('current-weather');
 
             if (!json) return undefined;
 
-            const resultado = this.weatherInterfaceToClass(JSON.parse(json) as IParsedWeather);
-
-            console.log("busca executada");
-            return resultado;
+            return this.weatherInterfaceToClass(JSON.parse(json) as IParsedWeather);
         } catch (error) {
             console.log("Falha ao buscar previsão do tempo salva: " + error)
-            throw new Error ("Falha ao buscar previsão do tempo salva: " + error);
+            throw new Error("Falha ao buscar previsão do tempo salva: " + error);
         }
     }
-    
+
     private static hourInterfaceToClass(hourInterface: IParsedHour): Hour {
         return new Hour(
             LocalDateTime.parse(hourInterface.time),

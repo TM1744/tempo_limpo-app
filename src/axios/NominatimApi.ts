@@ -41,6 +41,8 @@ export class NominatimApi {
     });
 
     static async fetchLocations(query: string): Promise<INominatimResult[]> {
+        console.info("NominatimApi.fetchLocations called")
+
         try {
             const response = await this.axiosInstance.get<INominatimResult[]>('/search', {
                 params: {

@@ -27,6 +27,8 @@ export class OpenMeteoApi {
     });
 
     static async fetchWeather(latitude: number, longitude: number): Promise<IOpenMeteoResult> {
+        console.info("OpenMeteoApi.fetchWeather called");
+
         try {
             const response = await this.axiosInstance.get<IOpenMeteoResult>('/forecast', {
                 params: {
