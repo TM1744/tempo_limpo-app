@@ -18,17 +18,14 @@ export default function Routes() {
 
     useEffect(() => {
         const loadSavedLocation = async () => {
-            try {
-                const savedLocation = await LocationService.getSavedLocation();
+            setLocation(undefined);
 
-                if (savedLocation) {
-                    setLocation(savedLocation);
-                }
-            } catch (error) {
-                console.error("Erro ao carregar localização:", error);
-            } finally {
-                setIsLoading(false);
-            }
+            const savedLocation = await LocationService.getSavedLocation();
+            if (savedLocation.isOk) setLocation(savedLocation.value);
+
+            setIsLoading(false);
+
+            return;
         };
 
         loadSavedLocation();

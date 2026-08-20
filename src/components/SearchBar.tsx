@@ -22,7 +22,6 @@ export function SearchBar({ isLoading, search }: ISearchBarProps) {
         if (!input.trim() || isLoading) return;
         search(input);
         setInput('');
-        console.log("função do search bar chamada")
     }
 
     return (

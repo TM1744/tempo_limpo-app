@@ -1,4 +1,6 @@
 import axios, { type AxiosInstance } from 'axios';
+import { err, ok, Result } from '../types/Result';
+import { ErrorInstanceToString } from '../utils/ErrorInstanceToString';
 
 export interface INominatimAddress {
     road?: string;
@@ -40,7 +42,7 @@ export class NominatimApi {
         timeout: 5000
     });
 
-    static async fetchLocations(query: string): Promise<INominatimResult[]> {
+    static async fetchLocations(query: string): Promise<Result<INominatimResult[], string>> {
         console.info("NominatimApi.fetchLocations called")
 
         try {
@@ -53,24 +55,33 @@ export class NominatimApi {
                 },
             });
 
-            return response.data;
+            if(!response) {
+                console.error("NominatimApi.fetchLocations => the response to the Nominatim API request is undefined")
+                return err("A resposta do serviço de localização é indefinida.");
+            }
+
+            return ok(response.data);
+
         } catch (error: unknown) {
-            let errorMessage = "Falha ao buscar localidades";
+            let errorMessage = "Falha ao buscar localidades.";
 
             if (axios.isAxiosError(error)) {
                 if (error.response) {
-                    errorMessage = `Erro no serviço de localização [${error.response.status}]: ${error.response.data?.message || error.message}`;
+                    console.error(`NominatimApi.fetchLocations => [${error.response.status}]: ${error.response.data?.message || 'unknown'}`);
+                    errorMessage = `Erro no serviço de localização.`;
                 } else if (error.request) {
+                    console.error(`NominatimApi.fetchLocations => no response`);
                     errorMessage = "Sem resposta do serviço de localização. Verifique a sua conexão com a internet.";
                 } else {
-                    errorMessage = `Erro ao configurar consulta de localização: ${error.message}`;
+                    console.error(`NominatimApi.fetchLocations => query configuration failure: ${error.message}`);
+                    errorMessage = `Falha de configuração de consulta do serviço de localização.`;
                 }
-            } else if (error instanceof Error) {
-                errorMessage = error.message;
+            } else {
+                console.error(`NominatimApi.fetchLocations => unknown error: ${ErrorInstanceToString(error)}`);
+                errorMessage = `Erro não identificado do serviço de localização.`;
             }
 
-            console.error(errorMessage, error);
-            throw new Error(errorMessage);
+            return err(errorMessage);
         }
     }
 }

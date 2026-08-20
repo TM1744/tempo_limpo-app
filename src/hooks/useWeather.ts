@@ -50,16 +50,17 @@ export function useWeather() {
                 setError(undefined);
 
                 const savedLocation = await LocationService.getSavedLocation();
-                if (savedLocation) setLocation(savedLocation); else return;
+                if (savedLocation.isOk) setLocation(savedLocation.value); 
+                else {navigation.navigate('Locations'); return;};
 
                 const savedWeather = await WeatherService.getSavedWeather();
                 if (savedWeather) {
                     const now = LocalDateTime.now();
                     const hours = savedWeather.lastUpdate.until(now, ChronoUnit.HOURS);
 
-                    if (hours >= 3) await fetchWeather(savedLocation); else setWeather(savedWeather);
+                    if (hours >= 3) await fetchWeather(savedLocation.value); else setWeather(savedWeather);
                 } else {
-                    await fetchWeather(savedLocation);
+                    await fetchWeather(savedLocation.value);
                 }
             } catch (error) {
                 setError(ErrorInstanceToString(error))
