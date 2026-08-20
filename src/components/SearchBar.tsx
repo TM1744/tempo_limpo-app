@@ -68,13 +68,13 @@ const style = StyleSheet.create({
 
     inputField: {
         flex: 1, // Preenche todo o espaço disponível entre o início e o botão
-        height: '100%',
+        height: 60,
         paddingLeft: 10,
         color: '#FFFFFF',
         fontSize: 18,
         paddingRight: 10,
         fontFamily: "Lato-Regular",
-        borderWidth: 2,
+        borderWidth: 1.5,
         borderColor: "rgb(0, 118, 122)",
         borderRadius: 10
 
