@@ -11,8 +11,8 @@ import { IParsedWeather } from "../interfaces/parse/IParsedWeather";
 export class WeatherService {
     private constructor() { }
 
-    static async getWeather(latitude: number, longitude: number): Promise<Weather | undefined> {
-        console.info("WeatherService.getWeather called");
+    static async searchWeather(latitude: number, longitude: number): Promise<Weather | undefined> {
+        console.info("WeatherService.searchWeather called");
 
         const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 

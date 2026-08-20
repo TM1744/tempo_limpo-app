@@ -31,7 +31,7 @@ export function useWeather() {
         setLoading(true);
 
         try {
-            const currentWeather = await WeatherService.getWeather(targetLocation.lat, targetLocation.lon);
+            const currentWeather = await WeatherService.searchWeather(targetLocation.lat, targetLocation.lon);
             if (currentWeather) {
                 await WeatherService.saveWeather(currentWeather);
                 setWeather(currentWeather);
