@@ -9,9 +9,9 @@ export class LocationService {
     private constructor() { }
 
     static async searchLocations(query: string): Promise<Result<Location[], string>> {
-        try {
-            console.info("LocationService.searchLocations called");
+        console.info("LocationService.searchLocations called");
 
+        try {
             const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
             await delay(3000)
@@ -41,7 +41,7 @@ export class LocationService {
             return ok(locations);
         } catch {
             console.error(`LocationService.searchLocations => failure in the general processing of locations`);
-            return err("Falha no processamento geral das localizações.")
+            return err("Falha no processamento geral das localizações.");
         }
 
     }

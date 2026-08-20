@@ -1,11 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { LocationService } from "../services/LocationService";
 import { ChronoUnit, LocalDateTime } from "@js-joda/core";
 import { WeatherService } from "../services/WeatherService";
 import { Weather } from "../classes/Weather";
 import { Location } from "../classes/Location";
-import { ErrorInstanceToString } from "../utils/ErrorInstanceToString";
 import { Day } from "../classes/Day";
 
 export function useWeather() {
@@ -23,50 +22,46 @@ export function useWeather() {
     }
 
     function navigateToHours(day: Day) {
-        navigation.navigate("Hours", {day : day});
+        navigation.navigate("Hours", { day: day });
     }
-
-    async function fetchWeather(targetLocation: Location) {
-        setError(undefined);
+    
+    const fetchWeather = useCallback(async (targetLocation: Location) => {
         setLoading(true);
+        setError(undefined);
+        setWeather(undefined);
 
-        try {
-            const currentWeather = await WeatherService.searchWeather(targetLocation.lat, targetLocation.lon);
-            if (currentWeather) {
-                await WeatherService.saveWeather(currentWeather);
-                setWeather(currentWeather);
-            }
-        } catch (error) {
-            setError(ErrorInstanceToString(error));
-        } finally {
-            setLoading(false);
+        const currentWeather = await WeatherService.searchWeather(targetLocation.lat, targetLocation.lon);
+
+        if (currentWeather.isOk) {
+            await WeatherService.saveWeather(currentWeather.value);
+            setWeather(currentWeather.value);
+        } else {
+            setError(currentWeather.error);
         }
-    }
+
+        setLoading(false);
+    }, []);
 
     useEffect(() => {
         const initWeather = async () => {
-            try {
-                setLoading(true);
-                setError(undefined);
+            setLoading(true);
+            setError(undefined);
 
-                const savedLocation = await LocationService.getSavedLocation();
-                if (savedLocation.isOk) setLocation(savedLocation.value); 
-                else {navigation.navigate('Locations'); return;};
+            const savedLocation = await LocationService.getSavedLocation();
+            if (savedLocation.isOk) setLocation(savedLocation.value);
+            else { navigation.navigate('Locations'); return; };
 
-                const savedWeather = await WeatherService.getSavedWeather();
-                if (savedWeather) {
-                    const now = LocalDateTime.now();
-                    const hours = savedWeather.lastUpdate.until(now, ChronoUnit.HOURS);
+            const savedWeather = await WeatherService.getSavedWeather();
+            if (savedWeather.isOk) {
+                const now = LocalDateTime.now();
+                const hours = savedWeather.value.lastUpdate.until(now, ChronoUnit.HOURS);
 
-                    if (hours >= 3) await fetchWeather(savedLocation.value); else setWeather(savedWeather);
-                } else {
-                    await fetchWeather(savedLocation.value);
-                }
-            } catch (error) {
-                setError(ErrorInstanceToString(error))
-            } finally {
-                setLoading(false);
+                if (hours >= 3) await fetchWeather(savedLocation.value);
+                else setWeather(savedWeather.value);
             }
+            else await fetchWeather(savedLocation.value);
+
+            setLoading(false);
         }
 
         initWeather();

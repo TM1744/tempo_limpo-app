@@ -7,51 +7,61 @@ import { LocalDate, LocalDateTime } from "@js-joda/core";
 import { IParsedHour } from "../interfaces/parse/IParsedHour";
 import { IParsedDay } from "../interfaces/parse/IParsedDay";
 import { IParsedWeather } from "../interfaces/parse/IParsedWeather";
+import { err, ok, Result } from "../types/Result";
 
 export class WeatherService {
     private constructor() { }
 
-    static async searchWeather(latitude: number, longitude: number): Promise<Weather | undefined> {
+    static async searchWeather(latitude: number, longitude: number): Promise<Result<Weather, string>> {
         console.info("WeatherService.searchWeather called");
 
-        const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+        try {
+            const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-        await delay(3000);
+            await delay(3000);
 
-        const result = await OpenMeteoApi.fetchWeather(latitude, longitude);
+            const results = await OpenMeteoApi.fetchWeather(latitude, longitude);
 
-        if (!result) return undefined;
+            if (!results.isOk) return err(results.error);
 
-        const hourly = result.hourly;
-        const daily = result.daily;
+            const hourly = results.value.hourly;
+            const daily = results.value.daily;
 
-        let hourList: Hour[] = [];
-        let dayList: Day[] = [];
+            let hourList: Hour[] = [];
+            let dayList: Day[] = [];
 
 
-        for (let i = 0; i < hourly.time.length; i++) {
-            hourList.push(new Hour(
-                LocalDateTime.parse(hourly.time[i]),
-                hourly.temperature_2m[i],
-                hourly.precipitation_probability[i],
-                hourly.precipitation[i],
-                i
-            ));
-        };
+            for (let i = 0; i < hourly.time.length; i++) {
+                hourList.push(new Hour(
+                    LocalDateTime.parse(hourly.time[i]),
+                    hourly.temperature_2m[i],
+                    hourly.precipitation_probability[i],
+                    hourly.precipitation[i],
+                    i
+                ));
+            };
 
-        for (let i = 0; i < daily.time.length; i++) {
-            let dayHourList = hourList.splice(0, 24);
+            for (let i = 0; i < daily.time.length; i++) {
+                let dayHourList = hourList.splice(0, 24);
 
-            dayList.push(new Day(
-                LocalDate.parse(daily.time[i]),
-                dayHourList,
-                daily.precipitation_probability_mean[i],
-                daily.temperature_2m_mean[i],
-                i
-            ));
-        };
+                dayList.push(new Day(
+                    LocalDate.parse(daily.time[i]),
+                    dayHourList,
+                    daily.precipitation_probability_mean[i],
+                    daily.temperature_2m_mean[i],
+                    i
+                ));
+            };
 
-        return new Weather(dayList, LocalDateTime.now());
+            const weather = new Weather(dayList, LocalDateTime.now());
+
+            return ok(weather);
+
+        } catch {
+            console.error(`WeatherService.searchWeather => failure in the general processing of locations`);
+            return err(`Falha no processamento geral da previsão de tempo.`);
+        }
+
     }
 
     static async saveWeather(weather: Weather): Promise<void> {
@@ -59,9 +69,12 @@ export class WeatherService {
 
         try {
             const jsonValue = JSON.stringify(weather);
+            
+            if (!jsonValue) console.error(`WeatherService.saveWeater => failed to convert object to JSON`);
+
             await AsyncStorage.setItem('current-weather', jsonValue);
-        } catch (error) {
-            console.log("Falha ao salvar previsão de tempo: " + error);
+        } catch {
+            console.error(`WeatherService.saveWeather => failed to save weather`);
         }
     }
 
@@ -71,22 +84,33 @@ export class WeatherService {
         try {
             await AsyncStorage.removeItem('current-weather');
         } catch (error) {
-            console.error("Falha ao excluir localidade salva: " + error);
+            console.error(`WeatherService.removeSavedWeather => failed to remove saved weather`);
         }
     }
 
-    static async getSavedWeather(): Promise<Weather | undefined> {
+    static async getSavedWeather(): Promise<Result<Weather, string>> {
         console.info("WeatherService.getSavedWeather called");
 
         try {
             const json = await AsyncStorage.getItem('current-weather');
 
-            if (!json) return undefined;
+            if (!json) {
+                console.error(`WeatherService.getSavedWeather => failed to fetch JSON`);
+                return err(`Falha ao recuperar previsão de tempo salva.`);
+            }
 
-            return this.weatherInterfaceToClass(JSON.parse(json) as IParsedWeather);
-        } catch (error) {
-            console.log("Falha ao buscar previsão do tempo salva: " + error)
-            throw new Error("Falha ao buscar previsão do tempo salva: " + error);
+            const weather = this.weatherInterfaceToClass(JSON.parse(json) as IParsedWeather);
+
+            if (!weather) {
+                console.error(`WeatherService.getSavedWeather => failed to convert JSON to interface, and interface to object`);
+                return err(`Falha ao converter previsão de tempo.`)
+            }
+
+            return ok(weather);
+
+        } catch {
+            console.error(`WeatherService.getSavedWeather => failed to retrieve saved weather`)
+            return err(`Falha ao recuperar a previsão do tempo salva.`)
         }
     }
 
