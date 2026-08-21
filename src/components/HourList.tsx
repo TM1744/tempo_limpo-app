@@ -2,19 +2,22 @@ import { View, StyleSheet } from "react-native";
 import { IHourListProps } from "../interfaces/props/IHourListProps";
 import { Notification } from "./Notification";
 import { HourCard } from "./HourCard";
+import { LocalDateTime } from "@js-joda/core";
 
-export function HourList ({hours} : IHourListProps) {
+export function HourList({ hours }: IHourListProps) {
     const hasHours = hours && hours.length > 0;
+    const now = LocalDateTime.now();
 
-    if(!hasHours) return <Notification text="Falha ao carregar horas."/>;
+    if (!hasHours) return <Notification text="Falha ao carregar horas." />;
 
-    if (hasHours) 
+    if (hasHours)
         return (
             <View style={style.listContainer}>
                 {
-                    hours.map((hour) => (
-                        <HourCard hour={hour} key={hour.id.toString()}/>
-                    ))
+                    hours.map((hour) => {
+                        if(hour.time.isAfter(now)) 
+                            return <HourCard hour={hour} key={hour.id.toString()}/>
+                    })
                 }
             </View>
         );
