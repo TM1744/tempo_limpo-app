@@ -9,16 +9,17 @@ import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { ISearchBarProps } from '../interfaces/props/ISearchBarProps';
+import { IInputFieldProps } from '../interfaces/props/IInputFieldProps';
 import { Press } from './Press';
 
 
-export function SearchBar({ isLoading, search }: ISearchBarProps) {
+export function InputField ({ loading = false, onPressButton, buttonIconName }: IInputFieldProps)
+{
     const [input, setInput] = useState<string>('');
 
     function handleSearch() {
-        if (!input.trim() || isLoading) return;
-        search(input);
+        if (!input.trim() || loading || !onPressButton) return;
+        onPressButton(input);
         setInput('');
     }
 
@@ -30,13 +31,13 @@ export function SearchBar({ isLoading, search }: ISearchBarProps) {
                 onChangeText={setInput}
                 placeholder="Buscar localidade..."
                 placeholderTextColor="#A0A5BD"
-                editable={!isLoading}
+                editable={!loading}
                 maxLength={50}
                 returnKeyType="search"
                 onSubmitEditing={handleSearch} // Permite buscar ao apertar "Enter/Ir" no teclado
             />
 
-            <Press iconName={"search"} onPress={handleSearch} loading={isLoading}/>
+            <Press iconName={buttonIconName} onPress={handleSearch} loading={loading}/>
         </View>
 
 

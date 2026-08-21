@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import { SafeView } from "../components/SafeView";
-import { SearchBar } from "../components/SearchBar";
+import { InputField } from "../components/InputField";
 import { Title } from "../components/Title";
 import { useLocation } from "../hooks/useLocation";
 import { LocationList } from "../components/LocationList";
@@ -12,7 +12,7 @@ export function LocationScreen() {
         <SafeView>
             <View style={styles.container}>
                 <Title text="Buscar localidade" />
-                <SearchBar isLoading={loading} search={fetchLocations} />
+                <InputField loading={loading} onPressButton={fetchLocations} buttonIconName="search"/>
                 <LocationList locations={locations} loading={loading} 
                     error={error} onPress={saveAndNavigate}/>
             </View>
