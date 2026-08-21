@@ -1,10 +1,10 @@
 import { SafeView } from "../components/SafeView";
 import { Title } from "../components/Title";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { LocationCard } from "../components/LocationCard";
 import { useWeather } from "../hooks/useWeather";
 import { DayList } from "../components/DayList";
-import { EvilIcons } from "@expo/vector-icons";
+import { Press } from "../components/Press";
 
 export function WeatherScreen() {
     const { location, weather, loading, error, removeAndReturn, navigateToHours, fetchWeather } = useWeather();
@@ -14,13 +14,9 @@ export function WeatherScreen() {
             <View style={style.container}>
                 <Title text="Previsão" />
                 <LocationCard location={location} onPress={removeAndReturn} />
-                {!loading && location &&
-                    <TouchableOpacity activeOpacity={0.7} style={style.button}
-                        onPress={() => fetchWeather(location)}
-                        disabled={loading}>
-                        <EvilIcons name="refresh" size={40} color={"white"} />
-                    </TouchableOpacity>
-                }
+
+                <Press loading={loading} iconName="refresh" onPress={() => fetchWeather(location)}/>
+
                 <DayList
                     days={weather?.days}
                     error={error}
@@ -46,14 +42,5 @@ const style = StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "center",
         gap: 15
-    },
-
-    button: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 10,
-        width: 65,
-        borderRadius: 10,
-        backgroundColor: "rgb(0, 118, 122)"
     }
 });

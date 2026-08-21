@@ -25,7 +25,9 @@ export function useWeather() {
         navigation.navigate("Hours", { day: day });
     }
     
-    const fetchWeather = useCallback(async (targetLocation: Location) => {
+    const fetchWeather = useCallback(async (targetLocation?: Location) => {
+        if(!targetLocation) return;
+        
         setLoading(true);
         setError(undefined);
         setWeather(undefined);

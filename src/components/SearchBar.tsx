@@ -1,10 +1,8 @@
 
 import React, { useState } from 'react';
 import {
-    ActivityIndicator,
     StyleSheet,
     TextInput,
-    TouchableOpacity,
     View
 } from 'react-native';
 import {
@@ -12,7 +10,7 @@ import {
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { ISearchBarProps } from '../interfaces/props/ISearchBarProps';
-import { EvilIcons } from '@expo/vector-icons';
+import { Press } from './Press';
 
 
 export function SearchBar({ isLoading, search }: ISearchBarProps) {
@@ -38,18 +36,7 @@ export function SearchBar({ isLoading, search }: ISearchBarProps) {
                 onSubmitEditing={handleSearch} // Permite buscar ao apertar "Enter/Ir" no teclado
             />
 
-            <TouchableOpacity
-                activeOpacity={0.7}
-                style={style.searchButton}
-                onPress={handleSearch}
-                disabled={isLoading}
-            >
-                {isLoading ? (
-                    <ActivityIndicator size={40} color="white" />
-                ) : (
-                    <EvilIcons name="search" size={40} color={"white"}/>
-                )}
-            </TouchableOpacity>
+            <Press iconName={"search"} onPress={handleSearch} loading={isLoading}/>
         </View>
 
 
@@ -68,7 +55,7 @@ const style = StyleSheet.create({
 
     inputField: {
         flex: 1, // Preenche todo o espaço disponível entre o início e o botão
-        height: 60,
+        height: 64.5,
         paddingLeft: 10,
         color: '#FFFFFF',
         fontSize: 18,
@@ -78,14 +65,5 @@ const style = StyleSheet.create({
         borderColor: "rgb(0, 118, 122)",
         borderRadius: 10
 
-    },
-
-    searchButton: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 10,
-        width: 65,
-        borderRadius: 10,
-        backgroundColor: "rgb(0, 118, 122)"
     }
 });

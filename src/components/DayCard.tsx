@@ -1,10 +1,10 @@
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { EvilIcons } from '@expo/vector-icons';
 import { IDayCardProps } from '../interfaces/props/IDayCardProps';
+import { Press } from './Press';
 
 
 export function DayCard({ day, onPress }: IDayCardProps) {
@@ -30,9 +30,7 @@ export function DayCard({ day, onPress }: IDayCardProps) {
         </View>
       </View>
 
-      <TouchableOpacity activeOpacity={0.8} style={style.button} onPress={handlePress}>
-        <EvilIcons name={"clock"} size={40} color="white" />
-      </TouchableOpacity>
+      <Press iconName={"clock"} onPress={handlePress}/>
     </View>
   );
 }
@@ -84,14 +82,5 @@ const style = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     paddingRight: 5
-  },
-
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    width: 65,
-    borderRadius: 10,
-    backgroundColor: "rgb(0, 118, 122)"
   }
 });

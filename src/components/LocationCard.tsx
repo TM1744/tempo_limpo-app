@@ -4,7 +4,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { ILocationCardProps } from '../interfaces/props/ILocationCardProps';
-import { EvilIcons } from '@expo/vector-icons';
+import { Press } from './Press';
 
 
 export function LocationCard({ location, onPress }: ILocationCardProps) {
@@ -27,9 +27,7 @@ export function LocationCard({ location, onPress }: ILocationCardProps) {
 
       </View>
 
-      <TouchableOpacity activeOpacity={0.8} style={style.button} onPress={handlePress}>
-        <EvilIcons name={"location"} size={40} color="white" />
-      </TouchableOpacity>
+      <Press iconName={"location"} onPress={handlePress}/>
     </View>
   );
 }
@@ -65,14 +63,5 @@ const style = StyleSheet.create({
     fontSize: 14,
     lineHeight: 20,
     fontFamily: "Lato-Regular"
-  },
-
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    width: 65,
-    borderRadius: 10,
-    backgroundColor: "rgb(0, 118, 122)"
   }
 });
