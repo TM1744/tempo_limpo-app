@@ -5,6 +5,7 @@ import { View, StyleSheet } from "react-native";
 import { Title } from "../components/Title";
 import { HourList } from "../components/HourList";
 import { Press } from "../components/Press";
+import { FadeView } from "../components/FadeView";
 
 type HoursRouteProp = RouteProp<StackType, 'Hours'>;
 
@@ -20,8 +21,12 @@ export function HourScreen() {
         <SafeView>
             <View style={style.container}>
                 <Title text={label} />
-                <Press onPress={() => navigation.goBack()}
-                    iconName="arrow-left" />
+
+                <FadeView visible={true}>
+                    <Press onPress={() => navigation.goBack()}
+                        iconName="arrow-left" />
+                </FadeView>
+
                 <HourList hours={day?.hours} />
             </View>
         </SafeView>
