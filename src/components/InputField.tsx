@@ -11,10 +11,10 @@ import {
 } from 'react-native-responsive-screen';
 import { IInputFieldProps } from '../interfaces/props/IInputFieldProps';
 import { Press } from './Press';
+import { FadeView } from './FadeView';
 
 
-export function InputField ({ loading = false, onPressButton, buttonIconName }: IInputFieldProps)
-{
+export function InputField({ loading = false, onPressButton, buttonIconName }: IInputFieldProps) {
     const [input, setInput] = useState<string>('');
 
     function handleSearch() {
@@ -24,7 +24,7 @@ export function InputField ({ loading = false, onPressButton, buttonIconName }: 
     }
 
     return (
-        <View style={style.container}>
+        <FadeView style={style.container} visible={true}>
             <TextInput
                 style={style.inputField}
                 value={input}
@@ -37,10 +37,8 @@ export function InputField ({ loading = false, onPressButton, buttonIconName }: 
                 onSubmitEditing={handleSearch} // Permite buscar ao apertar "Enter/Ir" no teclado
             />
 
-            <Press iconName={buttonIconName} onPress={handleSearch} loading={loading}/>
-        </View>
-
-
+            <Press iconName={buttonIconName} onPress={handleSearch} loading={loading} />
+        </FadeView>
     );
 }
 

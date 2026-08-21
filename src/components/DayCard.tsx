@@ -5,6 +5,7 @@ import {
 } from 'react-native-responsive-screen';
 import { IDayCardProps } from '../interfaces/props/IDayCardProps';
 import { Press } from './Press';
+import { FadeView } from './FadeView';
 
 
 export function DayCard({ day, onPress }: IDayCardProps) {
@@ -21,7 +22,7 @@ export function DayCard({ day, onPress }: IDayCardProps) {
   const rainChance = day?.rainChance.toFixed(0).toString() ?? "--";
 
   return (
-    <View style={style.container}>
+    <FadeView style={style.container} visible={true}>
       <View style={style.infoArea}>
         <Text style={style.label}>{label}</Text>
         <View style={style.weatherArea}>
@@ -30,8 +31,9 @@ export function DayCard({ day, onPress }: IDayCardProps) {
         </View>
       </View>
 
-      <Press iconName={"clock"} onPress={handlePress}/>
-    </View>
+      <Press iconName={"clock"} onPress={handlePress} />
+    </FadeView>
+
   );
 }
 

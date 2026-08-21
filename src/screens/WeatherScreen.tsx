@@ -5,6 +5,7 @@ import { LocationCard } from "../components/LocationCard";
 import { useWeather } from "../hooks/useWeather";
 import { DayList } from "../components/DayList";
 import { Press } from "../components/Press";
+import { FadeView } from "../components/FadeView";
 
 export function WeatherScreen() {
     const { location, weather, loading, error, removeAndReturn, navigateToHours, fetchWeather } = useWeather();
@@ -15,7 +16,9 @@ export function WeatherScreen() {
                 <Title text="Previsão" />
                 <LocationCard location={location} onPress={removeAndReturn} />
 
-                <Press loading={loading} iconName="refresh" onPress={() => fetchWeather(location)}/>
+                <FadeView visible={true}>
+                    <Press loading={loading} iconName="refresh" onPress={() => fetchWeather(location)}/>
+                </FadeView>
 
                 <DayList
                     days={weather?.days}

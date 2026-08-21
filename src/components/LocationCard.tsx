@@ -5,6 +5,7 @@ import {
 } from 'react-native-responsive-screen';
 import { ILocationCardProps } from '../interfaces/props/ILocationCardProps';
 import { Press } from './Press';
+import { FadeView } from './FadeView';
 
 
 export function LocationCard({ location, onPress }: ILocationCardProps) {
@@ -18,7 +19,7 @@ export function LocationCard({ location, onPress }: ILocationCardProps) {
   }
 
   return (
-    <View style={style.container}>
+    <FadeView style={style.container} visible={true}>
       <View style={style.textArea}>
         <Text style={style.name}>{name ?? 'Cianorte'}</Text>
         <Text style={style.references}>
@@ -27,8 +28,8 @@ export function LocationCard({ location, onPress }: ILocationCardProps) {
 
       </View>
 
-      <Press iconName={"location"} onPress={handlePress}/>
-    </View>
+      <Press iconName={"location"} onPress={handlePress} />
+    </FadeView>
   );
 }
 

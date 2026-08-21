@@ -3,14 +3,15 @@ import { ITitleProps } from "../interfaces/props/ITitleProps";
 import {
     widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import { FadeView } from "./FadeView";
 
 export function Title({ text }: ITitleProps) {
     const formatedText = text ? text.toUpperCase() : "INDEFINIDO";
 
     return (
-        <View style={style.container}>
+        <FadeView style={style.container} visible={true}>
             <Text style={style.text}>{formatedText}</Text>
-        </View>
+        </FadeView>
     );
 }
 

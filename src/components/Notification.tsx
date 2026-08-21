@@ -5,21 +5,22 @@ import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { FadeView } from "./FadeView";
 
-export function Notification ({text} : INotificationProps) {
+export function Notification({ text }: INotificationProps) {
 
     return (
-        <View style={style.container}>
+        <FadeView style={style.container} visible={true}>
             <View>
-                <EvilIcons name="exclamation" size={40} color={"black"}/>
+                <EvilIcons name="exclamation" size={40} color={"black"} />
             </View>
             <Text style={style.text}>{text ?? "Mensagem de notificação não definida!"}</Text>
-        </View>
+        </FadeView>
     );
 }
 
 const style = StyleSheet.create({
-    container : {
+    container: {
         display: "flex",
         width: wp(92),
         backgroundColor: "rgb(254, 254, 254)",
@@ -31,7 +32,7 @@ const style = StyleSheet.create({
         paddingLeft: 25
     },
 
-    text : {
+    text: {
         display: "flex",
         color: "black",
         flex: 1,

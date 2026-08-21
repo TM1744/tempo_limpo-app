@@ -5,6 +5,7 @@ import {
 } from 'react-native-responsive-screen';
 import { IHourCardProps } from '../interfaces/props/IHourCardProps';
 import { DateTimeFormatter } from '@js-joda/core';
+import { FadeView } from './FadeView';
 
 
 export function HourCard({ hour }: IHourCardProps) {
@@ -16,13 +17,13 @@ export function HourCard({ hour }: IHourCardProps) {
     const temperature = hour?.temperature?.toFixed(1).toString() ?? "--";
 
     return (
-        <View style={style.container}>
-                <Text style={style.label}>{label}</Text>
-                <View style={style.weatherArea}>
-                    <Text style={style.rainText}>{rainChance}% | {rainMM}MM</Text>
-                    <Text style={style.temperatureText}>{temperature}°C</Text>
-                </View>
-        </View>
+        <FadeView style={style.container} visible={true}>
+            <Text style={style.label}>{label}</Text>
+            <View style={style.weatherArea}>
+                <Text style={style.rainText}>{rainChance}% | {rainMM}MM</Text>
+                <Text style={style.temperatureText}>{temperature}°C</Text>
+            </View>
+        </FadeView>
     );
 }
 
