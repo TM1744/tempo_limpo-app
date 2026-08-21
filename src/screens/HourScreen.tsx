@@ -20,7 +20,7 @@ export function HourScreen() {
         <SafeView>
             <View style={style.container}>
                 <Title text={label} />
-                <Press onPress={() => navigation.navigate("Weather")}
+                <Press onPress={() => navigation.goBack()}
                     iconName="arrow-left" />
                 <HourList hours={day?.hours} />
             </View>
