@@ -1,8 +1,4 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import {
-    widthPercentageToDP as wp,
-    heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
 import { IHourCardProps } from '../interfaces/props/IHourCardProps';
 import { DateTimeFormatter } from '@js-joda/core';
 import { FadeView } from './FadeView';
@@ -31,7 +27,7 @@ const style = StyleSheet.create({
     container: {
         display: "flex",
         flexDirection: "row",
-        width: wp(100),
+        width: "100%",
         height: "auto",
         justifyContent: "space-between",
         alignItems: "center",

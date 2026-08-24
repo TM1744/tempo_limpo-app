@@ -44,11 +44,9 @@ const style = StyleSheet.create({
     height: "auto",
     justifyContent: "space-between", 
     alignItems: "center",
-    paddingHorizontal: 20,
     paddingVertical: 15,
     gap: 15,
-    borderRadius: 15,
-    paddingLeft: 22, 
+    borderRadius: 15
   },
 
   infoArea: {

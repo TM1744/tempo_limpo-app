@@ -1,8 +1,4 @@
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { ILocationCardProps } from '../interfaces/props/ILocationCardProps';
 import { Press } from './Press';
 import { FadeView } from './FadeView';
@@ -37,13 +33,11 @@ const style = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
-    width: wp(100),
+    width: "100%",
     height: "auto",
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 16,
     paddingVertical: 20,
-    paddingLeft: 22,
     gap: 15
   },
 

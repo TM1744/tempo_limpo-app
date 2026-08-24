@@ -13,7 +13,7 @@ export function useWeather() {
     const [location, setLocation] = useState<Location | undefined>(undefined);
     const [weather, setWeather] = useState<Weather | undefined>(undefined);
     const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | undefined>(undefined);
+    const [error, setError] = useState<string | undefined>("Falha");
 
     async function removeAndReturn() {
         await LocationService.removeSavedLocation();
@@ -24,10 +24,10 @@ export function useWeather() {
     function navigateToHours(day: Day) {
         navigation.navigate("Hours", { day: day });
     }
-    
+
     const fetchWeather = useCallback(async (targetLocation?: Location) => {
-        if(!targetLocation) return;
-        
+        if (!targetLocation) return;
+
         setLoading(true);
         setError(undefined);
         setWeather(undefined);

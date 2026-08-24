@@ -5,10 +5,6 @@ import {
     TextInput,
     View
 } from 'react-native';
-import {
-    widthPercentageToDP as wp,
-    heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
 import { IInputFieldProps } from '../interfaces/props/IInputFieldProps';
 import { Press } from './Press';
 import { FadeView } from './FadeView';
@@ -45,8 +41,8 @@ export function InputField({ loading = false, onPressButton, buttonIconName }: I
 const style = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        width: wp(100),
-        height: hp(6.5),
+        width: "100%",
+        height: "auto",
         alignItems: 'center',
         paddingHorizontal: 16,
         gap: 15

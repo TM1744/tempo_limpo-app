@@ -1,10 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import { INotificationProps } from "../interfaces/props/INotificationProps";
 import { EvilIcons } from "@expo/vector-icons";
-import {
-    widthPercentageToDP as wp,
-    heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
 import { FadeView } from "./FadeView";
 
 export function Notification({ text }: INotificationProps) {
@@ -22,7 +18,7 @@ export function Notification({ text }: INotificationProps) {
 const style = StyleSheet.create({
     container: {
         display: "flex",
-        width: wp(92),
+        width: "100%",
         backgroundColor: "rgb(254, 254, 254)",
         borderRadius: 10,
         alignItems: "center",

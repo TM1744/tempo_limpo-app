@@ -1,8 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
 import { ITitleProps } from "../interfaces/props/ITitleProps";
-import {
-    widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
 import { FadeView } from "./FadeView";
 
 export function Title({ text }: ITitleProps) {
@@ -17,7 +14,7 @@ export function Title({ text }: ITitleProps) {
 
 const style = StyleSheet.create({
     container: {
-        width: wp(100),
+        width: "100%",
         padding: 10,
         alignItems: "center",
         justifyContent: "center"
