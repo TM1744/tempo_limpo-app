@@ -1,6 +1,7 @@
 import axios, { type AxiosInstance } from 'axios';
 import { err, ok, Result } from '../types/Result';
 import { ErrorInstanceToString } from '../utils/ErrorInstanceToString';
+import { UserAgentService } from '../services/UserAgentService';
 
 export interface INominatimAddress {
     road?: string;
@@ -34,19 +35,22 @@ export interface INominatimResult {
 export class NominatimApi {
     private constructor() { }
 
-    private static axiosInstance: AxiosInstance = axios.create({
-        baseURL: 'https://nominatim.openstreetmap.org',
-        headers: {
-            'User-Agent': 'Tempo_Limpo/v0.1 (marquesthiago1744@gmail.com)',
-        },
-        timeout: 5000
-    });
-
     static async fetchLocations(query: string): Promise<Result<INominatimResult[], string>> {
         console.info("NominatimApi.fetchLocations called")
 
         try {
-            const response = await this.axiosInstance.get<INominatimResult[]>('/search', {
+            const userAgent = await UserAgentService.getSavedUserAgent();
+            if (!userAgent.isOk) return err(userAgent.error);
+
+            const axiosInstance = axios.create({
+                baseURL: 'https://nominatim.openstreetmap.org',
+                headers: {
+                    'User-Agent': `Tempo_Limpo/v1 ${userAgent}`,
+                },
+                timeout: 5000
+            });
+
+            const response = await axiosInstance.get<INominatimResult[]>('/search', {
                 params: {
                     q: query,
                     format: 'json',
@@ -55,7 +59,7 @@ export class NominatimApi {
                 },
             });
 
-            if(!response) {
+            if (!response) {
                 console.error("NominatimApi.fetchLocations => the response to the Nominatim API request is undefined")
                 return err("A resposta do serviço de localização é indefinida.");
             }
