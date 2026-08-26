@@ -33,32 +33,30 @@ export function InputField({ loading = false, onPressButton, buttonIconName }: I
                 onSubmitEditing={handleSearch} // Permite buscar ao apertar "Enter/Ir" no teclado
             />
 
-            <Press iconName={buttonIconName} onPress={handleSearch} loading={loading} />
+                <Press iconName={buttonIconName} onPress={handleSearch} loading={loading} />
         </FadeView>
     );
 }
 
 const style = StyleSheet.create({
     container: {
+        display: "flex",
         flexDirection: 'row',
         width: "100%",
         height: "auto",
         alignItems: 'center',
-        paddingHorizontal: 16,
-        gap: 15
+        borderWidth: 2,
+        borderColor: "#008BA8",
+        borderRadius: 15,
+        paddingRight: 10
     },
 
     inputField: {
-        flex: 1, // Preenche todo o espaço disponível entre o início e o botão
-        height: 64.5,
-        paddingLeft: 10,
+        flex: 1,
+        paddingHorizontal: 20,
+        height: 70,
         color: '#FFFFFF',
-        fontSize: 18,
-        paddingRight: 10,
-        fontFamily: "Lato-Regular",
-        borderWidth: 1.5,
-        borderColor: "rgb(0, 118, 122)",
-        borderRadius: 10
-
+        fontSize: 20,
+        fontFamily: "Lato-Regular"
     }
 });

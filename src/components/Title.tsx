@@ -24,6 +24,5 @@ const style = StyleSheet.create({
         color: "white",
         fontSize: 24,
         fontFamily: "JosefinSans",
-
     }
 });
