@@ -8,4 +8,5 @@ export interface IInputFieldProps {
     onPressButton?(value: string) : void;
     loading?: boolean;
     buttonIconName?: EvilIconName;
+    placeHolder?: string;
 }

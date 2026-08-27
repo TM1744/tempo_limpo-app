@@ -33,13 +33,13 @@ export class UserAgentService {
         try {
             const value = await AsyncStorage.getItem("current-userAgent");
             if (!value) {
-                console.error(`UserAgentService.getSavedUserAgent => undefined user-agent`);
+                console.warn(`UserAgentService.getSavedUserAgent => undefined user-agent`);
                 return err(`Falha ao recuperar User Agent salvo, User Agent não definido`);
             }
 
             return ok(value);
         } catch {
-            console.error(`UserAgentService.getSavedUserAgent => failed to retrieve saved user-agent`);
+            console.warn(`UserAgentService.getSavedUserAgent => failed to retrieve saved user-agent`);
             return err(`Falha ao recuperar User Agent salvo.`);
         }
     }

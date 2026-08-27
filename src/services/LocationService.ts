@@ -67,21 +67,21 @@ export class LocationService {
             const json = await AsyncStorage.getItem('selected-location');
 
             if (!json) {
-                console.error(`LocationService.getSavedLocation => failed to fetch JSON`);
+                console.warn(`LocationService.getSavedLocation => failed to fetch JSON`);
                 return err(`Falha ao recuperar localização salva.`);
             }
 
             const location = this.interfaceToClass(JSON.parse(json) as IParsedLocation);
 
             if (!location) {
-                console.error(`LocationService.getSavedLocation => failed to convert JSON to interface, and interface to object`);
+                console.warn(`LocationService.getSavedLocation => failed to convert JSON to interface, and interface to object`);
                 return err(`Falha ao converter localização salva.`)
             }
 
             return ok(location);
 
         } catch {
-            console.error(`LocationService.getSavedLocation => failed to retrieve saved location`);
+            console.warn(`LocationService.getSavedLocation => failed to retrieve saved location`);
             return err(`Falha ao recuperar localização salva.`);
         }
     }

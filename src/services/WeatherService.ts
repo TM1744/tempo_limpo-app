@@ -95,21 +95,21 @@ export class WeatherService {
             const json = await AsyncStorage.getItem('current-weather');
 
             if (!json) {
-                console.error(`WeatherService.getSavedWeather => failed to fetch JSON`);
+                console.warn(`WeatherService.getSavedWeather => failed to fetch JSON`);
                 return err(`Falha ao recuperar previsão de tempo salva.`);
             }
 
             const weather = this.weatherInterfaceToClass(JSON.parse(json) as IParsedWeather);
 
             if (!weather) {
-                console.error(`WeatherService.getSavedWeather => failed to convert JSON to interface, and interface to object`);
+                console.warn(`WeatherService.getSavedWeather => failed to convert JSON to interface, and interface to object`);
                 return err(`Falha ao converter previsão de tempo.`)
             }
 
             return ok(weather);
 
         } catch {
-            console.error(`WeatherService.getSavedWeather => failed to retrieve saved weather`)
+            console.warn(`WeatherService.getSavedWeather => failed to retrieve saved weather`)
             return err(`Falha ao recuperar a previsão do tempo salva.`)
         }
     }

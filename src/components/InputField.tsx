@@ -10,7 +10,7 @@ import { Press } from './Press';
 import { FadeView } from './FadeView';
 
 
-export function InputField({ loading = false, onPressButton, buttonIconName }: IInputFieldProps) {
+export function InputField({ loading = false, onPressButton, buttonIconName, placeHolder }: IInputFieldProps) {
     const [input, setInput] = useState<string>('');
 
     function handleSearch() {
@@ -25,7 +25,7 @@ export function InputField({ loading = false, onPressButton, buttonIconName }: I
                 style={style.inputField}
                 value={input}
                 onChangeText={setInput}
-                placeholder="Buscar localidade..."
+                placeholder={placeHolder ? placeHolder : "..."}
                 placeholderTextColor="#A0A5BD"
                 editable={!loading}
                 maxLength={50}
