@@ -22,10 +22,8 @@ export function HourScreen() {
             <View style={style.container}>
                 <Title text={label} />
 
-                <FadeView visible={true}>
                     <Press onPress={() => navigation.goBack()}
                         iconName="arrow-left" />
-                </FadeView>
 
                 <HourList hours={day?.hours} />
             </View>

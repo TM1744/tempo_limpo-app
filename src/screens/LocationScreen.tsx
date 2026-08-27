@@ -25,9 +25,9 @@ export function LocationScreen() {
                     error={error} onPress={saveAndNavigate} />
             </ScrollView>
 
-            <FadeView style={style.footer} visible>
+            <View style={style.footer}>
                 <Press iconName="gear" onPress={() => console.log("mensagem")} />
-            </FadeView>
+            </View>
         </SafeView>
 
     );
