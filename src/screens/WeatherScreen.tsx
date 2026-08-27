@@ -1,22 +1,24 @@
 import { SafeView } from "../components/SafeView";
 import { Title } from "../components/Title";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { StyleSheet } from "react-native";
 import { LocationCard } from "../components/LocationCard";
 import { useWeather } from "../hooks/useWeather";
 import { DayList } from "../components/DayList";
 import { Press } from "../components/Press";
+import { Header } from "../components/Header";
+import { Main } from "../components/Main";
+import { Footer } from "../components/Footer";
 
 export function WeatherScreen() {
     const { location, weather, loading, error, removeAndReturn, navigateToHours, fetchWeather } = useWeather();
 
     return (
-        <SafeView style={style.container}>
-            <View style={style.header}>
+        <SafeView>
+            <Header>
                 <Title text="Previsão do tempo" />
-            </View>
+            </Header>
 
-            <ScrollView style={style.main}
-                contentContainerStyle={style.mainContent}>
+            <Main>
                 <LocationCard location={location} onPress={removeAndReturn} />
 
                 <DayList
@@ -25,9 +27,9 @@ export function WeatherScreen() {
                     loading={loading}
                     onPress={navigateToHours}
                 />
-            </ScrollView>
+            </Main>
 
-            <View style={style.footer}>
+            <Footer style={style.footer}>
                 <Press
                     loading={loading}
                     iconName="refresh"
@@ -41,42 +43,13 @@ export function WeatherScreen() {
                         onPress={() => console.log()}
                     />
                 }
-            </View>
-
+            </Footer>
         </SafeView>
     );
 }
 
 const style = StyleSheet.create({
-    container: {
-        paddingHorizontal: 20
-    },
-
-    header: {
-        width: "auto",
-        height: "auto",
-        paddingBottom: 20
-    },
-
-    main: {
-        flex: 1,
-        width: "100%",
-        height: "auto"
-    },
-
-    mainContent: {
-        flexGrow: 1,
-        justifyContent: "flex-start",
-        gap: 30
-    },
-
     footer: {
-        display: "flex",
-        width: "100%",
-        flexDirection: "row",
-        paddingTop: 20,
-        height: "auto",
-        justifyContent: "flex-end",
         gap: 20
     }
 });

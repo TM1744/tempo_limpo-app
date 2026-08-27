@@ -1,11 +1,12 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { StackType } from "../types/StackType";
 import { SafeView } from "../components/SafeView";
-import { View, StyleSheet } from "react-native";
 import { Title } from "../components/Title";
 import { HourList } from "../components/HourList";
 import { Press } from "../components/Press";
-import { FadeView } from "../components/FadeView";
+import { Header } from "../components/Header";
+import { Main } from "../components/Main";
+import { Footer } from "../components/Footer";
 
 type HoursRouteProp = RouteProp<StackType, 'Hours'>;
 
@@ -19,22 +20,16 @@ export function HourScreen() {
 
     return (
         <SafeView>
-            <View style={style.container}>
+            <Header>
                 <Title text={label} />
-
-                    <Press onPress={() => navigation.goBack()}
-                        iconName="arrow-left" />
-
+            </Header>
+            <Main>
                 <HourList hours={day?.hours} />
-            </View>
+            </Main>
+            <Footer>
+                <Press onPress={() => navigation.goBack()}
+                    iconName="arrow-left" />
+            </Footer>
         </SafeView>
     );
 }
-
-const style = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        gap: 30,
-    }
-});

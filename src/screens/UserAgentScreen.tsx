@@ -1,4 +1,4 @@
-import { View, StyleSheet, ScrollView } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeView } from "../components/SafeView";
 import { Title } from "../components/Title";
 import { InputField } from "../components/InputField";
@@ -7,6 +7,8 @@ import { UserAgentService } from "../services/UserAgentService";
 import { Notification } from "../components/Notification";
 import { Subtext } from "../components/Subtext";
 import { useNavigation } from "@react-navigation/native";
+import { Header } from "../components/Header";
+import { Main } from "../components/Main";
 
 export function UserAgentScreen() {
     const navigation = useNavigation();
@@ -24,51 +26,26 @@ export function UserAgentScreen() {
     }
 
     return (
-        <SafeView style={style.container}>
-            <View style={style.header}>
+        <SafeView>
+            <Header>
                 <Title text="Configuração inicial" />
-            </View>
+            </Header>
 
-            <ScrollView style={style.main}
-                contentContainerStyle={style.mainContent}
-            >
+            <Main>
                 <InputField buttonIconName="arrow-right" placeHolder="Informe seu E-mail..."
                     loading={loading} onPressButton={saveUserAgent} />
 
                 <Subtext text={`Seu E-mail será utilizado apenas como User-Agent para requisições` +
                     ` das APIs OpenMeteo e Nominatim. Para mais informações, veja a documentação do` +
-                    ` projeto no GitHub.`} style={style.text}/>
+                    ` projeto no GitHub.`} style={style.text} />
 
                 {error && <Notification text={error} />}
-            </ScrollView>
+            </Main>
         </SafeView>
     );
 }
 
 const style = StyleSheet.create({
-    container: {
-        paddingHorizontal: 20
-    },
-
-    header: {
-        width: "auto",
-        height: "auto",
-        paddingBottom: 20
-    },
-
-    main: {
-        flex: 1,
-        width: "100%",
-        height: "auto"
-    },
-
-    mainContent: {
-        flexGrow: 1,
-        justifyContent: "flex-start",
-        alignItems: "center",
-        gap: 30
-    },
-
     text: {
         textAlign: "justify"
     }

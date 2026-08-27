@@ -15,9 +15,13 @@ export function HourCard({ hour }: IHourCardProps) {
     return (
         <FadeView style={style.container} visible={true}>
             <Text style={style.label}>{label}</Text>
-            <View style={style.weatherArea}>
-                <Text style={style.rainText}>{rainChance}% | {rainMM}MM</Text>
-                <Text style={style.temperatureText}>{temperature}°C</Text>
+            <View style={style.weatherDetailsContainer}>
+                <Text style={style.rainMMText}>{rainMM} MM</Text>
+
+                <View style={style.secondaryInfo}>
+                    <Text style={style.rainChanceText}>{rainChance}%</Text>
+                    <Text style={style.temperatureText}>{temperature}°C</Text>
+                </View>
             </View>
         </FadeView>
     );
@@ -31,10 +35,7 @@ const style = StyleSheet.create({
         height: "auto",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingHorizontal: 16,
         paddingVertical: 20,
-        paddingLeft: 22,
-        gap: 15
     },
 
     label: {
@@ -44,23 +45,41 @@ const style = StyleSheet.create({
         fontFamily: "JosefinSans-Italic"
     },
 
-    rainText: {
-        color: "cyan",
-        fontFamily: "Lato-Regular",
-        fontSize: 18,
-        textAlign: "right"
-    },
-
-    temperatureText: {
-        color: "orange",
-        fontFamily: "Lato-Regular",
-        fontSize: 18,
-        textAlign: "right"
-    },
-
     weatherArea: {
         display: "flex",
         flexDirection: "column",
         paddingRight: 5
+    },
+
+    weatherDetailsContainer: {
+        flexDirection: "column",
+        alignItems: 'flex-end',
+        gap: 5,
+    },
+
+    temperatureText: {
+        color: '#FF9800',
+        fontSize: 18,
+        fontFamily: "Lato-Regular",
+    },
+
+    secondaryInfo: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 15,
+    },
+
+    rainChanceText: {
+        color: "#00BCD4",
+        fontSize: 18,
+        fontWeight: '600',
+        fontFamily: "Lato-Regular",
+    },
+
+    rainMMText: {
+        color: "#00BCD4",
+        fontSize: 32,
+        fontWeight: 'bold',
+        fontFamily: "Lato-Regular",
     }
 });

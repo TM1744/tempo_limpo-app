@@ -21,11 +21,12 @@ export function DayCard({ day, onPress }: IDayCardProps) {
         <Text style={style.label}>{label}</Text>
 
         <View style={style.weatherDetailsContainer}>
-          <Text style={style.temperatureText}>{temperature}°C</Text>
-          
+          <Text style={style.rainMMText}>{rainMM} MM</Text>
+
+
           <View style={style.secondaryInfo}>
             <Text style={style.rainChanceText}>{rainChance}%</Text>
-            <Text style={style.rainMMText}>{rainMM} MM</Text>
+            <Text style={style.temperatureText}>{temperature}°C</Text>
           </View>
         </View>
       </View>
@@ -40,9 +41,9 @@ const style = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
-    width: '100%', 
+    width: '100%',
     height: "auto",
-    justifyContent: "space-between", 
+    justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 15,
     gap: 15,
@@ -72,9 +73,8 @@ const style = StyleSheet.create({
   },
 
   temperatureText: {
-    color: "#FF9800",
-    fontSize: 42,
-    fontWeight: 'bold',
+    color: '#FF9800',
+    fontSize: 18,
     fontFamily: "Lato-Regular",
   },
 
@@ -92,8 +92,9 @@ const style = StyleSheet.create({
   },
 
   rainMMText: {
-    color: '#9e9e9e',
-    fontSize: 18,
+    color: "#00BCD4",
+    fontSize: 32,
+    fontWeight: 'bold',
     fontFamily: "Lato-Regular",
   }
 });

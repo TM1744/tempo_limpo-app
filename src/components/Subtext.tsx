@@ -11,7 +11,7 @@ export function Subtext ({text, style, ...props} : ISubtextProps) {
 
 const styles = StyleSheet.create({
   text: {
-    color: '#A0A5BD', // Tom cinza suave para subtexto
+    color: '#A0A5BD',
     fontSize: 14,
     lineHeight: 20,
     fontFamily: "Lato-Regular"
