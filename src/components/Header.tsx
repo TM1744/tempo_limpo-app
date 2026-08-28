@@ -8,7 +8,7 @@ export function Header({ children, style, ...props }: IHeaderProps) {
 
     return (
         <BlurView intensity={30} tint="systemMaterialDark"
-            style={[{paddingTop: insets.top},styles.header, style]} {...props}>
+            style={[{paddingTop: insets.top + 20},styles.header, style]} {...props}>
             {children}
         </BlurView>
     );

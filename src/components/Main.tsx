@@ -19,11 +19,12 @@ const styles = StyleSheet.create({
     main: {
         flex: 1,
         width: "100%",
+        overflow: "hidden"
     },
 
     mainContent: {
-        paddingTop: 60,
-        paddingBottom: 80,
+        paddingTop: 90,
+        paddingBottom: 90,
         gap: 30,
     }
 });
