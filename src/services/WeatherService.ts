@@ -18,7 +18,7 @@ export class WeatherService {
         try {
             const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-            await delay(3000);
+            await delay(1500);
 
             const results = await OpenMeteoApi.fetchWeather(latitude, longitude);
 

@@ -14,7 +14,7 @@ export class LocationService {
         try {
             const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-            await delay(3000)
+            await delay(1500)
 
             const cleanQuery = query
                 .replace(/[^a-zA-Z0-9\s\u00C0-\u024F]/g, '')
