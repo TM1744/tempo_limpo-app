@@ -1,10 +1,13 @@
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { IMainProps } from "../interfaces/props/IMainProps";
 import { ScrollView, StyleSheet } from "react-native";
 
 export function Main({ children, style, contentContainerStyle, ...props }: IMainProps) {
+    const insets = useSafeAreaInsets();
+
     return (
         <ScrollView style={[styles.main, style]}
-            contentContainerStyle={[styles.mainContent, contentContainerStyle]}
+            contentContainerStyle={[{ }, styles.mainContent, contentContainerStyle]}
             {...props}
         >
             {children}
@@ -20,7 +23,7 @@ const styles = StyleSheet.create({
 
     mainContent: {
         paddingTop: 60,
-        paddingBottom: 90,
+        paddingBottom: 60,
         gap: 30,
     }
 });

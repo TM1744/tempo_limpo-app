@@ -14,16 +14,13 @@ export function Title({ text }: ITitleProps) {
 
 const style = StyleSheet.create({
     container: {
-        width: "auto",
+        width: "100%",
         height: "auto",
         alignItems: "center",
         justifyContent: "center"
     },
 
     text: {
-        display: "flex",
-        width: "auto",
-        height: "auto",
         color: "white",
         fontSize: 24,
         fontFamily: "JosefinSans",

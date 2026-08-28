@@ -28,6 +28,5 @@ export function LocationScreen() {
                 <Press iconName="gear" onPress={() => console.log("mensagem")} />
             </Footer>
         </SafeView>
-
     );
 }
