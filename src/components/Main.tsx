@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 
     mainContent: {
         paddingTop: 60,
-        paddingBottom: 60,
+        paddingBottom: 80,
         gap: 30,
     }
 });

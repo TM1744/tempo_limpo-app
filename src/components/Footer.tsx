@@ -6,7 +6,7 @@ export function Footer({ children, style, ...props }: IFooterProps) {
     const insets = useSafeAreaInsets();
     
     return (
-        <View style={[{bottom: insets.bottom}, styles.footer, style]} {...props} >
+        <View style={[{bottom: insets.bottom + 20}, styles.footer, style]} {...props} >
             {children}
         </View>
     );
