@@ -1,6 +1,5 @@
 import { SafeView } from "../components/SafeView";
 import { Title } from "../components/Title";
-import { StyleSheet } from "react-native";
 import { LocationCard } from "../components/LocationCard";
 import { useWeather } from "../hooks/useWeather";
 import { DayList } from "../components/DayList";
@@ -29,7 +28,7 @@ export function WeatherScreen() {
                 />
             </Main>
 
-            <Footer style={style.footer}>
+            <Footer style={{gap: 20}}>
                 <Press
                     loading={loading}
                     iconName="refresh"
@@ -47,9 +46,3 @@ export function WeatherScreen() {
         </SafeView>
     );
 }
-
-const style = StyleSheet.create({
-    footer: {
-        gap: 20
-    }
-});
