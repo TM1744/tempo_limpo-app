@@ -57,7 +57,7 @@ export function UserAgentScreen() {
 
             <Footer style={{ gap: 20 }}>
                 {!loading && <Press iconName="sc-github" loading={false} onPress={handleLinkPress} />}
-                {!loading && <Press iconName="gear" loading={false} onPress={console.log} />}
+                {/* {!loading && <Press iconName="gear" loading={false} onPress={console.log} />} */}
             </Footer>
         </SafeView>
     );

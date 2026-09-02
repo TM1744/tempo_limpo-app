@@ -35,13 +35,13 @@ export function WeatherScreen() {
                     onPress={() => fetchWeather(location)}
                 />
 
-                {!loading &&
+                {/* {!loading &&
                     <Press
                         loading={loading}
                         iconName="gear"
                         onPress={() => console.log()}
                     />
-                }
+                } */}
             </Footer>
         </SafeView>
     );

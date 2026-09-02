@@ -24,9 +24,9 @@ export function LocationScreen() {
                     error={error} onPress={saveAndNavigate} />
             </Main>
 
-            <Footer>
+            {/* <Footer>
                 <Press iconName="gear" onPress={() => console.log("mensagem")} />
-            </Footer>
+            </Footer> */}
         </SafeView>
     );
 }
