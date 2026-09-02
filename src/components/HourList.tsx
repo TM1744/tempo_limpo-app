@@ -6,7 +6,7 @@ import { LocalDateTime } from "@js-joda/core";
 
 export function HourList({ hours }: IHourListProps) {
     const hasHours = hours && hours.length > 0;
-    const now = LocalDateTime.now();
+    const now = LocalDateTime.now().hour();
 
     if (!hasHours) return <Notification text="Falha ao carregar horas." />;
 
@@ -15,7 +15,7 @@ export function HourList({ hours }: IHourListProps) {
             <View style={style.listContainer}>
                 {
                     hours.map((hour) => {
-                        if(hour.time.isAfter(now)) 
+                        if(hour.time.hour() >= now) 
                             return <HourCard hour={hour} key={hour.id.toString()}/>
                     })
                 }
