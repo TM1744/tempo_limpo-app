@@ -3,7 +3,6 @@ import { Location } from "../classes/Location"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IParsedLocation } from "../interfaces/parse/IParsedLocation";
 import { err, ok, Result } from "../types/Result";
-import { ErrorInstanceToString } from "../utils/ErrorInstanceToString";
 
 export class LocationService {
     private constructor() { }
@@ -14,7 +13,7 @@ export class LocationService {
         try {
             const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-            await delay(1500)
+            await delay(2000)
 
             const cleanQuery = query
                 .replace(/[^a-zA-Z0-9\s\u00C0-\u024F]/g, '')
