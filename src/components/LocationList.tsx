@@ -31,7 +31,7 @@ const style = StyleSheet.create({
     listContainer: {
         display: "flex",
         flexDirection: "column",
-        flex: 1,
+        flexGrow: 1,
         justifyContent: "flex-start",
         alignItems: "center",
         gap: 15
