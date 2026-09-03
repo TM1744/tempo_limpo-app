@@ -1,7 +1,6 @@
-<div style="display: flex; width: 100%; height: auto; justify-content: center;
-        align-items: center; padding: 20px 0px 20px 0px;">
-        <img src="./assets/icon.png" alt="Icone" style="width: 20%; height: 20%; border-radius: 50%; min-width: 100px; min-height: 100px; max-width: 150px; max-height: 150px">
-</div>
+<p align="center">
+  <img src="./assets/icon.png" alt="Ícone Tempo Limpo" width="120" >
+</p>
 
 # Tempo Limpo
 
@@ -23,20 +22,25 @@ O aplicativo obtém todas as suas informações através de APIs especializadas:
 ## Demonstração Visual
 Veja como as diferentes telas do aplicativo são apresentadas:
 
-<div style="display: flex; width: 100%; justify-content: space-around; align-items: flex-start; padding: 20px 0;">
-    <div style="text-align: center; max-width: 30%;">
-        <img src="./demo/location_search.jpg" alt="Tela de busca de localidades" style="max-width: 95%; height: auto; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-        <p style="margin-top: 10px;">Busca de Localidades</p>
-    </div>
-    <div style="text-align: center; max-width: 30%;">
-        <img src="./demo/weather_forecast.jpg" alt="Tela de previsão de tempo" style="max-width: 95%; height: auto; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-        <p style="margin-top: 10px;">Previsão Geral</p>
-    </div>
-    <div style="text-align: center; max-width: 30%;">
-        <img src="./demo/hourly_details.jpg" alt="Tela de busca de detalhes por hora" style="max-width: 95%; height: auto; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-        <p style="margin-top: 10px;">Detalhes Horários</p>
-    </div>
-</div>
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="./demo/location_search.jpg" alt="Tela de busca de localidades" width="100%">
+      <br>
+      <sub><b>Busca de Localidades</b></sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="./demo/weather_forecast.jpg" alt="Tela de previsão de tempo" width="100%">
+      <br>
+      <sub><b>Previsão Geral</b></sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="./demo/hourly_details.jpg" alt="Tela de busca de detalhes por hora" width="100%">
+      <br>
+      <sub><b>Detalhes Horários</b></sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -51,10 +55,9 @@ Para garantir uma experiência fluida, o aplicativo gerencia ativamente os dados
 *   **Limite de Taxa Nominatim:** É permitido apenas **1** requisição por segundo para busca de latitude/longitude. O aplicativo já incorpora um *delay* de **2** segundos para cada chamada à Nominatim.
 *   **Limite Diário OpenMeteo:** A OpenMeteo estabelece um limite máximo de **10.000** requisições diárias.
 
-> **Observação Importante:** O APP salva e gerencia altomaticamente as localidades e previsões de dias em cache para reduzir a quantidade de chamadas às APIs. Entretanto, você ainda pode realizar requisições de novos dados trocando as localidades e atualizando a previsão de dias por conta própria (botão de refresh).
+> **Observação Importante:** O APP salva e gerencia automaticamente as localidades e previsões de dias em cache para reduzir a quantidade de chamadas às APIs. Entretanto, você ainda pode realizar requisições de novos dados trocando as localidades e atualizando a previsão de dias por conta própria (botão de refresh).
 
 Para mais detalhes sobre o uso dessas APIs, acesse a documentação da [Nominatim](https://nominatim.org/) e da [OpenMeteo](https://open-meteo.com/).
-
 
 ## Próximas Funcionalidades
 
@@ -72,5 +75,5 @@ Este projeto é construído sobre serviços de terceiros que merecem reconhecime
 *   **Dados Meteorológicos:** [Open-Meteo.com](https://open-meteo.com/) (Licença: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
 
 ### Tipografia
-*   **Josefin Sans** (Bold, BoldItalic): Criada por Santiago Orozco ( Licença: [SIL Open Font License 1.1](https://scripts.sil.org/OFL)).
-*   **Lato** (Light, Regular): Criada por Łukasz Dziedzic ( Licença: [SIL Open Font License 1.1](https://scripts.sil.org/OFL)).
+*   **Josefin Sans** (Bold, BoldItalic): Criada por Santiago Orozco (Licença: [SIL Open Font License 1.1](https://scripts.sil.org/OFL)).
+*   **Lato** (Light, Regular): Criada por Łukasz Dziedzic (Licença: [SIL Open Font License 1.1](https://scripts.sil.org/OFL)).
