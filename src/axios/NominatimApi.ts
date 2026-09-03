@@ -1,7 +1,6 @@
 import axios, { type AxiosInstance } from 'axios';
 import { err, ok, Result } from '../types/Result';
 import { ErrorInstanceToString } from '../utils/ErrorInstanceToString';
-import { UserAgentService } from '../services/UserAgentService';
 
 export interface INominatimAddress {
     road?: string;
@@ -39,13 +38,10 @@ export class NominatimApi {
         console.info("NominatimApi.fetchLocations called")
 
         try {
-            const userAgent = await UserAgentService.getSavedUserAgent();
-            if (!userAgent.isOk) return err(userAgent.error);
-
             const axiosInstance = axios.create({
                 baseURL: 'https://nominatim.openstreetmap.org',
                 headers: {
-                    'User-Agent': `Tempo_Limpo/v1 ${userAgent}`,
+                    'User-Agent': `Tempo_Limpo/v1.0.0 marquesthiago1744@gmail.com`,
                 },
                 timeout: 5000
             });
