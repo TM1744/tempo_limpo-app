@@ -5,12 +5,14 @@ import { FadeView } from "./FadeView";
 
 export function Notification({ text }: INotificationProps) {
 
+    if (!text) return;
+
     return (
         <FadeView style={style.container} visible={true}>
             <View>
                 <EvilIcons name="exclamation" size={40} color={"black"} />
             </View>
-            <Text style={style.text}>{text ?? "Mensagem de notificação não definida!"}</Text>
+            <Text style={style.text}>{text}</Text>
         </FadeView>
     );
 }

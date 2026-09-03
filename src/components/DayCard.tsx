@@ -1,10 +1,10 @@
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { IDayCardProps } from '../interfaces/props/IDayCardProps';
 import { FadeView } from './FadeView';
 import { Press } from './Press';
 
 export function DayCard({ day, onPress }: IDayCardProps) {
-  if (!day || !onPress) return <ActivityIndicator size={40} color="white" />
+  if (!day || !onPress) return;
 
   const handlePress = () => {
     if (day && onPress) onPress(day);

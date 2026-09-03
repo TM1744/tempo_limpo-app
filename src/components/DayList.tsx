@@ -9,10 +9,10 @@ export function DayList({ loading, error, days, onPress }: IDayListProps) {
     const now = LocalDate.now();
 
     if (error && !hasDays && !loading)
-        return <Notification text={error} />
+        return <Notification text={error} />;
 
     if (!onPress)
-        return <Notification text="Falha de configuração. É necessário informar uma função." />
+        return;
 
     if (hasDays)
         return (

@@ -9,7 +9,10 @@ export function Press<Args extends any[] = any[], Result = void>({
     iconName = "exclamation",
     loading = false
 }: IPressProps<Args, Result>) {
-    const isDisabled = loading || !onPress;
+
+    if (!onPress) return;
+
+    const isDisabled = loading;
 
     const handlePress = () => {
         if (onPress) onPress(...([] as unknown as Args));

@@ -10,7 +10,7 @@ export function LocationList({ error, loading, locations, onPress }: ILocationLi
         return <Notification text={error} />
 
     if (!onPress)
-        return <Notification text="Falha de configuração. É necessário informar uma função."/>
+        return;
 
     if (hasLocations)
         return (

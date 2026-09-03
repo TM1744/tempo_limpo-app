@@ -1,11 +1,11 @@
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { IHourCardProps } from '../interfaces/props/IHourCardProps';
 import { DateTimeFormatter } from '@js-joda/core';
 import { FadeView } from './FadeView';
 
 
 export function HourCard({ hour }: IHourCardProps) {
-    if (!hour) return <ActivityIndicator size={40} color="white" />
+    if (!hour) return;
 
     const label = hour?.time?.format(DateTimeFormatter.ofPattern("HH:mm")) ?? "--:--";
     const rainChance = hour?.rainChance.toFixed(0).toString() ?? "--";

@@ -1,4 +1,4 @@
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { ILocationCardProps } from '../interfaces/props/ILocationCardProps';
 import { Press } from './Press';
 import { FadeView } from './FadeView';
@@ -6,7 +6,7 @@ import { Subtext } from './Subtext';
 
 
 export function LocationCard({ location, onPress }: ILocationCardProps) {
-  if (!location || !onPress) return <ActivityIndicator size={40} color="white" />
+  if (!location || !onPress) return;
 
   const name = location?.name;
   const references = location?.references;

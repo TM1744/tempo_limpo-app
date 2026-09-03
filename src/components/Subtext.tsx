@@ -2,6 +2,8 @@ import { Text, StyleSheet } from "react-native";
 import type { ISubtextProps } from "../interfaces/props/ISubTextProps";
 
 export function Subtext ({text, style, ...props} : ISubtextProps) {
+    if (!text) return;
+
     return (
         <Text style={[styles.text, style]} {...props}>
             {text}
