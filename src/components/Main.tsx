@@ -8,6 +8,7 @@ export function Main({ children, style, contentContainerStyle, ...props }: IMain
     return (
         <ScrollView style={[styles.main, style]}
             contentContainerStyle={[{ }, styles.mainContent, contentContainerStyle]}
+            showsVerticalScrollIndicator={false}
             {...props}
         >
             {children}
