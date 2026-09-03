@@ -9,6 +9,8 @@ import { LocationScreen } from "./screens/LocationScreen";
 import { WeatherScreen } from "./screens/WeatherScreen";
 import { HourScreen } from "./screens/HourScreen";
 import { StackType } from "./types/StackType";
+import { StackScreen } from "react-native-screens";
+import { InfoScreen } from "./screens/InfoScreen";
 
 
 const Stack = createNativeStackNavigator<StackType>();
@@ -56,6 +58,7 @@ export default function Routes() {
                     <Stack.Screen name="Locations" component={LocationScreen} />
                     <Stack.Screen name="Weather" component={WeatherScreen} />
                     <Stack.Screen name="Hours" component={HourScreen} />
+                    <Stack.Screen name="Info" component={InfoScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         );

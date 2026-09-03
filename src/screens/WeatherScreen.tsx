@@ -7,9 +7,12 @@ import { Press } from "../components/Press";
 import { Header } from "../components/Header";
 import { Main } from "../components/Main";
 import { Footer } from "../components/Footer";
+import { useNavigation } from "@react-navigation/native";
 
 export function WeatherScreen() {
     const { location, weather, loading, error, removeAndReturn, navigateToHours, fetchWeather } = useWeather();
+
+    const navigation = useNavigation();
 
     return (
         <SafeView>
@@ -29,19 +32,13 @@ export function WeatherScreen() {
             </Main>
 
             <Footer style={{gap: 20}}>
+                <Press iconName="question" onPress={() => navigation.navigate('Info')} />
+
                 <Press
                     loading={loading}
                     iconName="refresh"
                     onPress={() => fetchWeather(location)}
                 />
-
-                {/* {!loading &&
-                    <Press
-                        loading={loading}
-                        iconName="gear"
-                        onPress={() => console.log()}
-                    />
-                } */}
             </Footer>
         </SafeView>
     );

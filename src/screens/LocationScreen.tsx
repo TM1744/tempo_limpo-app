@@ -7,9 +7,12 @@ import { Press } from "../components/Press";
 import { Header } from "../components/Header";
 import { Main } from "../components/Main";
 import { Footer } from "../components/Footer";
+import { useNavigation } from "@react-navigation/native";
 
 export function LocationScreen() {
     const { locations, loading, error, saveAndNavigate, fetchLocations } = useLocation();
+
+    const navigation = useNavigation();
 
     return (
         <SafeView>
@@ -24,9 +27,9 @@ export function LocationScreen() {
                     error={error} onPress={saveAndNavigate} />
             </Main>
 
-            {/* <Footer>
-                <Press iconName="gear" onPress={() => console.log("mensagem")} />
-            </Footer> */}
+            <Footer>
+                <Press iconName="question" onPress={() => navigation.navigate('Info')} />
+            </Footer>
         </SafeView>
     );
 }

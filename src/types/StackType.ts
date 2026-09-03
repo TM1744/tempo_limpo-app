@@ -6,4 +6,5 @@ export type StackType = {
     Weather: undefined;
     Hours: { day: Day | undefined; };
     UserAgent: undefined;
+    Info: undefined;
 }
