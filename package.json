@@ -2,6 +2,8 @@
   "name": "tempo_limpo-app",
   "version": "1.0.0",
   "main": "index.ts",
+  "license": "MIT",
+  "private": false,
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
@@ -28,6 +30,5 @@
   "devDependencies": {
     "@types/react": "~19.1.0",
     "typescript": "~5.9.2"
-  },
-  "private": true
+  }
 }
